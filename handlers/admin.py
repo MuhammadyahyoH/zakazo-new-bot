@@ -1,4 +1,4 @@
-# ----------------- Show all products ----------------- #
+
 from aiogram.fsm.context import FSMContext
 
 from core.db_settings import execute_query
@@ -22,7 +22,6 @@ async def show_all_products_handler(message: types.Message):
         await message.answer(text=text)
 
 
-# ----------------- Add new product ----------------- #
 @router.message(F.text == '📝Add new product')
 async def add_product_handler(message: types.Message, state: FSMContext):
     await message.answer("📝 Enter product title")
@@ -55,7 +54,6 @@ async def get_product_description(message: types.Message, state: FSMContext):
     await state.clear()
 
 
-# ----------------- Delete product ----------------- #
 @router.message(F.text == "🗑️ Delete product")
 async def delete_product_handler(message: types.Message, state: FSMContext):
     products = execute_query(
@@ -89,7 +87,6 @@ async def process_delete_product(message: types.Message, state: FSMContext):
     await state.clear()
 
 
-# ----------------- Today's menu ----------------- #
 @router.message(F.text == "📅 Show today's menu")
 async def show_today_menu(message: types.Message):
     menu = execute_query(

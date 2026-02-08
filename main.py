@@ -3,8 +3,8 @@ import logging
 
 from aiogram import Bot, Dispatcher, Router
 
-from config import BOT_TOKEN, DEVELOPER_ID
-from handlers import start, chat
+from core.config import BOT_TOKEN, DEVELOPER_ID
+from handlers import start, admin
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
@@ -26,7 +26,7 @@ async def shutdown(bot: Bot):
 
 async def main():
     dp.include_router(start.router)
-    dp.include_router(chat.router)
+    dp.include_router(admin.router)
 
     dp.startup.register(startup)
     dp.shutdown.register(shutdown)
